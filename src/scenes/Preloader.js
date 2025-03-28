@@ -27,25 +27,35 @@ export class Preloader extends Scene
         // Définir le chemin des assets
         this.load.setPath('assets');
 
-        // Charger les images nécessaires pour le jeu
-        this.load.image('background', 'background.png');
-        this.load.image('bottle', 'bottle.png');
-        this.load.image('bin_blue', 'bin_blue.png');
-        this.load.image('bin_green', 'bin_green.png');
-        this.load.image('bin_yellow', 'bin_yellow.png');
-        this.load.image('assiette_pv', 'assiette_vert.png');
-        this.load.image('bouteille_pl','bouteille_plastique.png');
-        this.load.image('bouteille_vp','bouteille_vert.png');
-        this.load.image('brique_lait_pa','brique_bleu.png');
-        this.load.image('carton_pa','carton_bleu.png');
-        this.load.image('dentifrice_pl','dentifrice_plastique.png');
-        this.load.image('gobelet_pl','gobelet_plastique.png');
-        this.load.image('journal_pa','journal_bleu.png');
-        this.load.image('sac_pl','sac_plastique.png');
-        this.load.image('tupperware_pl','tupperware_plastique.png');
-        this.load.image('verre_pv','verre_vert.png');
-        this.load.image('verre_c_pv','verre-casser_vert.png');
-        this.load.image('vincent_bonus','20_100.png');
+        // Liste des images à charger
+        const images = {
+            'background': 'background.png',
+            'bottle': 'bottle.png',
+            'bin_blue': 'bin_blue.png',
+            'bin_green': 'bin_green.png',
+            'bin_yellow': 'bin_yellow.png',
+            'assiette_pv': 'assiette_vert.png',
+            'bouteille_pl': 'bouteille_plastique.png',
+            'bouteille_vp': 'bouteille_vert.png',
+            'brique_lait_pa': 'brique_bleu.png',
+            'carton_pa': 'carton_bleu.png',
+            'dentifrice_pl': 'dentifrice_plastique.png',
+            'gobelet_pl': 'gobelet_plastique.png',
+            'journal_pa': 'journal_bleu.png',
+            'sac_pl': 'sac_plastique.png',
+            'tupperware_pl': 'tupperware_plastique.png',
+            'verre_pv': 'verre_vert.png',
+            'verre_c_pv': 'verre-casser_vert.png',
+            'vincent_bonus': '20_100.png'
+        };
+
+        // Charger les images
+        Object.entries(images).forEach(([key, path]) => {
+            this.load.image(key, path);
+        });
+
+        // Charger la musique
+        this.load.audio('tri', '../assets/Tris.mp3');
     }
 
     create ()
@@ -54,8 +64,8 @@ export class Preloader extends Scene
         this.textures.each((texture, key) => {
             if (key !== '__DEFAULT') {
                 // Créer une image invisible pour la texture et la redimensionner
-                const image = this.add.image(0, 0, key).setVisible(false);
-                image.setDisplaySize(80, 80);  // Redimensionner toutes les images à 80x80
+                const image = this.add.image(10, 10, key).setVisible(false);
+                image.setDisplaySize(0, 0);  // Redimensionner toutes les images à 80x80
             }
         });
 

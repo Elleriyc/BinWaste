@@ -19,6 +19,9 @@ export class ClickerGame extends Scene {
         // Afficher le score
         this.scoreText = this.add.text(32, 32, 'Score: 0', textStyle).setDepth(1);
 
+        // Jouer la musique en boucle
+        this.sound.add('tri', { loop: true }).play();
+
         // Créer les déchets et les poubelles
         this.createTrashItems();
         this.createBins();
@@ -52,9 +55,9 @@ export class ClickerGame extends Scene {
 
         // Créer les poubelles avec une taille augmentée et centrées horizontalement
         this.bins = {
-            blue: this.add.image(startX, 700, 'bin_blue').setInteractive().setDisplaySize(100, 100),
-            green: this.add.image(startX + binSpacing, 700, 'bin_green').setInteractive().setDisplaySize(100, 100),
-            yellow: this.add.image(startX + binSpacing * 2, 700, 'bin_yellow').setInteractive().setDisplaySize(100, 100)
+            blue: this.add.image(startX, 700, 'bin_blue').setInteractive().setDisplaySize(100, 100), // poubelle papier
+            green: this.add.image(startX + binSpacing, 700, 'bin_green').setInteractive().setDisplaySize(100, 100), // poubelle verre
+            yellow: this.add.image(startX + binSpacing * 2, 700, 'bin_yellow').setInteractive().setDisplaySize(100, 100) // poubelle plastique
         };
 
         // Ajouter des événements de clic sur les poubelles
